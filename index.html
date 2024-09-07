@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwasthCare - Hospital Management</title>
+    <link rel="stylesheet" href="styles.css" /><style>
+      #col{color: white;}
+    </style>
+    
+  </head>
+  <body>
+    
+    <!-- Header Section -->
+    <header>
+      <div class="logo">
+        <span>
+          <h1 id="col"> SwasthCare</h1></span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="http://127.0.0.1:5500/"><h2>Home</h2></a></li>
+          <li><a href="http://127.0.0.1:5500/about.html"><h2>About</h2></a></li>
+          <li><a href="http://127.0.0.1:5500/feature.html"><h2>Features</h2></a></li>
+          <li><a href="http://127.0.0.1:5500/contact.html"><h2>Contact</h2></a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <!-- Main Section -->
+    <main>
+      <section class="hero">
+        <h1>Streamline Your Hospital Operations</h1>
+        <p>
+          Your all-in-one solution for managing OPD queues, tracking bed
+          availability, and handling patient admissions.
+        </p>
+        <button onclick="window.location.href='login.html'">Get Started</button>
+        
+      </section>
+      
+      <section class="features">
+        <h2>Key Features</h2>
+        <div class="feature-card" id="opd-management">
+          <h3>OPD Queue Management</h3>
+          <p>
+            Efficiently manage patient flow in outpatient departments with
+            real-time queue tracking.
+          </p>
+          <button onclick="manageQueue()">Manage Queue</button>
+        </div>
+        <div class="feature-card">
+          <h3>Bed Availability Tracking</h3>
+          <p>
+            Monitor bed occupancy and availability across all departments to
+            optimize resource utilization.
+          </p>
+          <button onclick="trackBeds()">Track Beds</button>
+        </div>
+        <div class="feature-card">
+          <h3>Patient Admission Management</h3>
+          <p>
+            Simplify the admission process with an intuitive interface for
+            patients and staff.
+          </p>
+          <button onclick="manageAdmissions()">Manage Admissions</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+      <p>&copy; 2024 SwasthCare. All Rights Reserved.</p>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </footer>
+
+    <!-- Queue Management Modal -->
+    <div id="queue-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2>OPD Queue Management</h2>
+        <input type="text" id="patientName" placeholder="Enter patient name" />
+        <button onclick="addPatient()">Add to Queue</button>
+        <button onclick="serveNextPatient()">Serve Next Patient</button>
+        <div id="queueList">
+          <h3>Patient Queue</h3>
+        </div>
+      </div>
+    </div>
+    <div id="bed-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeBedModal()">&times;</span>
+        <h2>Bed Availability Tracking</h2>
+
+        <div id="departments">
+          <!-- Department bed availability will be dynamically populated here -->
+        </div>
+
+        <button onclick="updateBedAvailability()">
+          Update Bed Availability
+        </button>
+      </div>
+    </div>
+
+    <!-- Patient Admission Modal -->
+    <div id="admission-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeAdmissionModal()">&times;</span>
+        <h2>Patient Admission Management</h2>
+        <form id="admissionForm">
+          <input
+            type="text"
+            id="patientNameAdmission"
+            placeholder="Patient Name"
+            required
+          />
+          <input
+            type="number"
+            id="patientAge"
+            placeholder="Patient Age"
+            required
+          />
+          <select id="admissionDepartment" required>
+            <option value="">Select Department</option>
+            <option value="Surgery">Surgery</option>
+            <option value="Pediatrics">Pediatrics</option>
+            <option value="ICU">ICU</option>
+          </select>
+          <textarea
+            id="admissionReason"
+            placeholder="Reason for Admission"
+            required
+          ></textarea>
+          <button type="submit">Admit Patient</button>
+        </form>
+
+        <h3>Admitted Patients</h3>
+        <div id="admittedPatientsList">
+          <!-- Admitted patients will be listed here -->
+        </div>
+      </div>
+    </div>
+</div>
+<div id="loginModal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeLoginModal()">&times;</span>
+      <h2>Login</h2>
+      <div class="login-options">
+        <button onclick="openPatientLogin()">Patient Login</button>
+        <button onclick="openStaffLogin()">Hospital Staff Login</button>
+      </div>
+      <div id="patientLoginForm" class="login-form hidden">
+        <h3>Patient Login</h3>
+        <form>
+          <label for="patientEmail">Email:</label>
+          <input type="email" id="patientEmail" placeholder="Enter your email" required>
+          
+          <label for="patientPassword">Password:</label>
+          <input type="password" id="patientPassword" placeholder="Enter your password" required>
+          
+          <button type="submit">Login</button>
+        </form>
+      </div>
+      <div id="staffLoginForm" class="login-form hidden">
+        <h3>Hospital Staff Login</h3>
+        <form>
+          <label for="staffEmail">Email:</label>
+          <input type="email" id="staffEmail" placeholder="Enter your email" required>
+          
+          <label for="staffPassword">Password:</label>
+          <input type="password" id="staffPassword" placeholder="Enter your password" required>
+          
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+ 
+    <script src="script.js"></script>
+  </body>
+</html>
